@@ -1,0 +1,35 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "describe": true,
+    "after": true,
+    "before": true,
+    "beforeEach": true,
+    "it": true,
+    "expect": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "comma-dangle": ["error", "always-multiline"],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+    "no-console": ["error", {"allow": ["log"]}],
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "require-jsdoc": ["error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": false
+        }
+      }
+    ]
+  }
+}

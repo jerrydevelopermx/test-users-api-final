@@ -1,0 +1,24 @@
+{
+  "name": "test-users-api",
+  "version": "1.0.0",
+  "description": "Jerry Test Basic API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jerrydevelopermx/test-users-api-final.git"
+  },
+  "author": "Jerry Developer MX",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "ink-docstrap": "^1.3.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.9",
+    "swagger-jsdoc": "^1.9.7"
+  }
+}
