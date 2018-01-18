@@ -17,13 +17,13 @@ module.exports = {
   },
 
   staging: {
-    API_URL: 'http://localhost',
-    API_PORT: '1342'
+    API_URL: 'https://glacial-plateau-68528.herokuapp.com',
+    API_PORT: '5000'
   },
 
   production: {
-    API_URL: 'http://localhost',
-    API_PORT: '1342'
+    API_URL: 'https://glacial-plateau-68528.herokuapp.com',
+    API_PORT: '5000'
   }
 
 };
