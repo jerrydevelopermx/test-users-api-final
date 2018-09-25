@@ -14,6 +14,10 @@ const UsersCtrl = require('../controllers/users');
 const usersRoute = '/api/users';
 /** API users route*/
 const usersEmailRoute = '/api/users/:email';
+/** API errors route*/
+const errorsRoute = '/api/errors';
+
+
 /**
  * @swagger
  * definitions:
@@ -63,6 +67,29 @@ const usersEmailRoute = '/api/users/:email';
  *         $ref: '#/definitions/credentials'
  * 
  */
+/**
+ * @swagger
+ * definitions:
+ *   ErrorObject:
+ *     properties: 
+ *       name:
+ *         type: string  
+ *       stacktrace:
+ *         type: string  
+ *       createdAt:
+ *         type: string 
+ * 
+ */
+/**
+* @swagger
+* definitions:
+*   ErrorsArr:
+*     type: array   
+*     items: 
+*       $ref: '#/definitions/ErrorObject'
+*/
+
+
 /**
 * @swagger
 * definitions:
@@ -240,5 +267,74 @@ router.delete(usersEmailRoute, UsersCtrl.delete);
  *           $ref: '#/definitions/error'
  */
 router.put(usersEmailRoute, UsersCtrl.update);
+
+/**
+ * @swagger
+ * /api/errors:
+ *   get:
+ *     tags:
+ *       - Errors
+ *     description: Get logged errors
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Sucessful request
+ *         schema:
+ *           $ref: '#/definitions/ErrorsArr'
+ *       400:
+ *         description: Bad request 
+ *         schema:
+ *           $ref: '#/definitions/error'
+ *       401:
+ *         description: Unauthorized access 
+ *         schema:
+ *           $ref: '#/definitions/error'
+ *       404:
+ *         description: User not found 
+ *         schema:
+ *           $ref: '#/definitions/error'
+ */
+router.get(errorsRoute, UsersCtrl.getAllErrors);
+
+/**
+ * @swagger
+ * /api/errors:
+ *   post:
+ *     tags:
+ *       - Errors
+ *     description: Saves Error
+ *     consumes:
+ *       - application/json
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: Error
+ *         description: Error object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/ErrorObject'
+ *     responses:
+ *       200:
+ *         description: Sucessful request
+ *         schema:
+ *           $ref: '#/definitions/ErrorObject'
+ *       400:
+ *         description: Bad request 
+ *         schema:
+ *           $ref: '#/definitions/error'
+ *       401:
+ *         description: Unauthorized access 
+ *         schema:
+ *           $ref: '#/definitions/error'
+ *       404:
+ *         description: User not found 
+ *         schema:
+ *           $ref: '#/definitions/error'
+ */
+router.post(errorsRoute, UsersCtrl.addError);
 
 module.exports = router;

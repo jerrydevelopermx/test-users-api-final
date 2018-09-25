@@ -139,3 +139,48 @@ exports.update = (req, res) => {
     });
 }
 
+
+
+/**
+ * Get All Errors
+ * @param {object} req -  Express Request object 
+ * @param {object} res - Express Response object 
+ * @return {array} errors - Errors array
+ */
+exports.getAllErrors = (req, res) => {
+  UsersCrud.findAllErrors(['name', 'stacktrace', 'created_at'])
+    .then((allErrors) => { console.log(allErrors)
+      res.status(200).json(allErrors);
+    }, //Error
+    (reason) => {
+      errors.genericResponse.error.message = reason
+      return res.status(400).send(errors.genericResponse);
+    });
+};
+
+/**
+ * Add ERROR
+ * @param {object} req -  Express Request object 
+ * @param {object} res - Express Response object 
+ * @return {object} reg - Error object
+ */
+exports.addError = (req, res) => {
+
+  if (!req.body || !req.body.name || !req.body.stacktrace) {
+    return res.status(400).json(errors.badRequest);
+  }
+
+  const error = {
+    name: req.body.name,
+    stacktrace: req.body.stacktrace
+  };
+
+  UsersCrud.saveError(error)
+    .then((reg) => { 
+      res.status(200).json(reg);
+    }, //Error
+    (reason) => {
+      errors.genericResponse.error.message = reason
+      return res.status(400).send(errors.genericResponse);
+    });
+};
